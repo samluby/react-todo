@@ -1,6 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-class TodoItem extends Component {
+/**
+ * PureComponent 也只是浅比较， 当需要更深层的比较的时候需要使用shoudComponentUpdate
+ */
+class TodoItem extends PureComponent {
 
 
     handlerCheckChange = () => {
@@ -8,8 +11,13 @@ class TodoItem extends Component {
         changeComputed(id)
     }
 
+    // shouldComponentUpdate (nextProps) {
+    //     return nextProps.computed !== this.props.computed
+    // }
+
     render () {
         const { title, computed } = this.props
+        console.log(`render ${title}`)
         return (
             <li>
                 <input type="checkbox" checked={computed} onChange={this.handlerCheckChange} />
